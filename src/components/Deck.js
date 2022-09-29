@@ -1,30 +1,23 @@
-import styled from "styled-components"
-import play from "/home/mateus/Documents/Projetos/projeto9-zaprecall/src/assets/img/seta_play.png"
+import Cards from "./Cards"
 
 export default function Deck() {
-    const array = ["Pergunta1","Pergunta2","Pergunta3","Pergunta4","Pergunta5","Pergunta6","Pergunta7","Pergunta8",]
+    const questionsNumber = ["Pergunta 1","Pergunta 2","Pergunta 3","Pergunta 4","Pergunta 5","Pergunta 6","Pergunta 7","Pergunta 8",]
+    const questionAndAnswer = [
+        {Q: "O que é JSX?", R: "Uma extensão de linguagem do JavaScript"},
+        {Q: "O React é __", R: "uma biblioteca JavaScript para construção de interfaces"},
+        {Q: "Componentes devem iniciar com __", R: "letra maiúscula"},
+        {Q: "Podemos colocar __ dentro do JSX", R: "expressões"},
+        {Q: "O ReactDOM nos ajuda __", R: "interagindo com a DOM para colocar componentes React na mesma"},
+        {Q: "Usamos o npm para __", R: "gerenciar os pacotes necessários e suas dependências"},
+        {Q: "Usamos props para __", R: "passar diferentes informações para componentes"},
+        {Q: "Usamos estado (state) para __", R: "dizer para o React quais informações quando atualizadas devem renderizar a tela novamente"}
+    ]
 
     return(
         <>
-            {array.map((p) => 
-            <Card key={p}>
-                {p}
-                <img src={play} alt="Botão Play"/>
-            </Card>)
+            {questionsNumber.map((question, i) => 
+                <Cards key={i} question={question} questionAndAnswer={questionAndAnswer} i={i}></Cards>)
             }
         </>
     )
 }
-
-const Card = styled.div`
-    width: 300px;
-    height: 35px;
-    background-color: #FFFFFF;
-    margin: 12px;
-    padding: 15px;
-    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-`

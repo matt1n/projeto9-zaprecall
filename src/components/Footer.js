@@ -11,7 +11,7 @@ export default function Footer() {
     <FooterStyled>
         <Botoes>
             {ButtonsFooter.map((b,i) => 
-            <Botao color={b.color}>{b.name}</Botao>)
+            <Botao key={i} color={b.color}>{b.name}</Botao>)
             }
         </Botoes>
         <p>Concluídas: 0/4</p>
