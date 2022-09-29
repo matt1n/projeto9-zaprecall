@@ -3,6 +3,7 @@ import Deck from "./Deck";
 import Footer from "./Footer";
 import Header from "./Header";
 import { useState } from "react";
+import Home from "./Home";
 
 export function Main({logo, play, virar, certo, quase, erro}) {
   const [cardSwitched, setCardSwitched] = useState([])
@@ -14,6 +15,8 @@ export function Main({logo, play, virar, certo, quase, erro}) {
   
   return (
     <ZapMain>
+        <Home logo={logo}/>
+        
         <Header logo={logo}/>
         
         <Deck 
