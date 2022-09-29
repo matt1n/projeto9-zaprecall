@@ -1,9 +1,7 @@
-import play from "src/assets/img/seta_play.png"
-import virar from "src/assets/img/seta_virar.png"
 import { useState } from "react"
 import styled from "styled-components"
 
-export default function Cards({question, questionAndAnswer, i}) {
+export default function Cards({question, questionAndAnswer, i, play, virar}) {
     const [cardClicked, setCardClicked] = useState(false)
     const [cardSwitch, setCardSwitch] = useState(false)
     

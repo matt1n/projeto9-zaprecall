@@ -3,11 +3,11 @@ import Deck from "./Deck";
 import Footer from "./Footer";
 import Header from "./Header";
 
-export function Main() {
+export function Main({logo, play, virar}) {
   return (
     <ZapMain>
-        <Header />
-        <Deck />
+        <Header logo={logo}/>
+        <Deck play={play} virar={virar} />
         <Footer />
     </ZapMain>
   );

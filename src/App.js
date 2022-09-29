@@ -1,7 +1,7 @@
 import { Main } from "./components/Main"
 
-export default function App(){
+export default function App({logo, play, virar}){
     return(
-      <Main />
+      <Main logo={logo} play={play} virar={virar} />
     )
 }
