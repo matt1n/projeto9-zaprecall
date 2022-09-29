@@ -1,7 +1,6 @@
 import Cards from "./Cards"
 
-export default function Deck({play, virar}) {
-    const questionsNumber = ["Pergunta 1","Pergunta 2","Pergunta 3","Pergunta 4","Pergunta 5","Pergunta 6","Pergunta 7","Pergunta 8",]
+export default function Deck({play, virar, cardSwitched, setCardSwitched, questionsNumber, zapCards, almoustCards, forgotCards, answeredCards, certo, quase, erro}) {
     const questionAndAnswer = [
         {Q: "O que é JSX?", R: "Uma extensão de linguagem do JavaScript"},
         {Q: "O React é __", R: "uma biblioteca JavaScript para construção de interfaces"},
@@ -16,7 +15,23 @@ export default function Deck({play, virar}) {
     return(
         <>
             {questionsNumber.map((question, i) => 
-                <Cards key={i} question={question} questionAndAnswer={questionAndAnswer} i={i} play={play} virar={virar}></Cards>)
+                <Cards 
+                key={i} 
+                question={question} 
+                questionAndAnswer={questionAndAnswer} 
+                i={i} 
+                play={play} 
+                virar={virar} 
+                cardSwitched={cardSwitched} 
+                setCardSwitched={setCardSwitched}
+                zapCards={zapCards}
+                almoustCards={almoustCards}
+                forgotCards={forgotCards}
+                answeredCards={answeredCards}
+                certo={certo} 
+                quase={quase} 
+                erro={erro}
+                ></Cards>)
             }
         </>
     )
