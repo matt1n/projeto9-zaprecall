@@ -1,4 +1,4 @@
-import logo from "/home/mateus/Documents/Projetos/projeto9-zaprecall/src/assets/img/logo.png"
+import logo from "src/assets/img/logo.png"
 import styled from "styled-components";
 
 export default function Header() {

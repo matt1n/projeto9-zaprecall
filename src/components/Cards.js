@@ -1,5 +1,5 @@
-import play from "/home/mateus/Documents/Projetos/projeto9-zaprecall/src/assets/img/seta_play.png"
-import virar from "/home/mateus/Documents/Projetos/projeto9-zaprecall/src/assets/img/seta_virar.png"
+import play from "src/assets/img/seta_play.png"
+import virar from "src/assets/img/seta_virar.png"
 import { useState } from "react"
 import styled from "styled-components"
 
