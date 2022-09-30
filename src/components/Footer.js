@@ -1,41 +1,13 @@
 import styled from "styled-components"
 
-export default function Footer({cardSwitched, setCardSwitched, questionsNumber, zapCards, setZapCards, almoustCards, setAlmoustCards, forgotCards, setForgotCards, answeredCards, setAnsweredCards}) {
-    const ButtonsFooter = [
-        {name:"Não lembrei", color: "#FF3030"},
-        {name:"Quase não lembrei", color: "#FF922E"},
-        {name:"ZAP!", color: "#2FBE34"}
-    ]
-    
-    function pressButton(i){
-        if (cardSwitched.length!==0){
-            if (i===0){
-                console.log("ESQUECI ;-;")
-                setAnsweredCards([...answeredCards, cardSwitched[0]])
-                setForgotCards([...forgotCards, cardSwitched[0]])
-                setCardSwitched([])
-            } else if (i===1){
-                console.log("IIIII QUASE QUE NÃO LEMBRO")
-                setAnsweredCards([...answeredCards, cardSwitched[0]])
-                setAlmoustCards([...almoustCards, cardSwitched[0]])
-                setCardSwitched([])
-            } else {
-                console.log("ZAP!!!!")
-                setAnsweredCards([...answeredCards, cardSwitched[0]])
-                setZapCards([...zapCards, cardSwitched[0]])
-                setCardSwitched([])
-            }
-        }
-    }
+export default function Footer({questionsNumber, answeredCards, answeredCardsIcons}) {
 
     return(
     <FooterStyled>
-        <Botoes>
-            {ButtonsFooter.map((b,i) => 
-            <Botao onClick={()=>pressButton(i)} key={i} color={b.color}>{b.name}</Botao>)
-            }
-        </Botoes>
         <p>Concluídas: {answeredCards.length}/{questionsNumber.length}</p>
+        {answeredCardsIcons.length!==0 ?<AnswerList>
+            {answeredCardsIcons.map((u,i)=> <img key={i} src={u} alt="icon"/>)}
+        </AnswerList> : undefined}
     </FooterStyled>
     )
 }
@@ -55,27 +27,19 @@ const FooterStyled = styled.div`
     font-size: 18px;
     color: #333333;
     padding: 10px;
+    box-shadow: 0px -4px 6px #00000015;
+    p{
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
 `
-const Botoes = styled.div`
+const AnswerList = styled.div`
+    height: 23px;
     display: flex;
-    width: 80%;
-    justify-content: space-between;
-    margin: 20px;
-`
-const Botao = styled.button`
-    width: 90px;
-    font-family: 'Recursive';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 14px;
-    display: flex;
+    margin-bottom: 8px;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #FFFFFF;
-    background-color: ${props=> props.color};
-    border-radius: 5px;
-    border: 1px solid ${props=> props.color};
-    padding:5px;
+    img{
+        height: 23px;
+        margin: 0 2.5px;
+    }
 `

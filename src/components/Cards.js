@@ -1,9 +1,14 @@
 import { useState } from "react"
 import styled from "styled-components"
 
-export default function Cards({question, questionAndAnswer, i, play, virar, cardSwitched, setCardSwitched, zapCards, almoustCards, forgotCards, answeredCards, certo, quase, erro}) {
+export default function Cards({question, questionAndAnswer, i, play, virar, cardSwitched, setCardSwitched, zapCards, setZapCards, almoustCards, setAlmoustCards, forgotCards, setForgotCards, answeredCards, setAnsweredCards, certo, quase, erro, answeredCardsIcons, setAnsweredCardsIcons}) {
     const [cardClicked, setCardClicked] = useState(false)
     const [cardSwitch, setCardSwitch] = useState(false)
+    const ButtonsFooter = [
+        {name:"Não lembrei", color: "#FF3030"},
+        {name:"Quase não lembrei", color: "#FF922E"},
+        {name:"ZAP!", color: "#2FBE34"}
+    ]
 
     function switchCard(){
     if  (cardSwitched.length===0 || cardSwitched.includes(question))
@@ -52,10 +57,36 @@ export default function Cards({question, questionAndAnswer, i, play, virar, card
         }
     }
     
+    function pressButton(i){
+        if (cardSwitched.length!==0){
+            if (i===0){
+                setAnsweredCards([...answeredCards, cardSwitched[0]])
+                setForgotCards([...forgotCards, cardSwitched[0]])
+                setAnsweredCardsIcons([...answeredCardsIcons, erro])
+                setCardSwitched([])
+            } else if (i===1){
+                setAnsweredCards([...answeredCards, cardSwitched[0]])
+                setAlmoustCards([...almoustCards, cardSwitched[0]])
+                setAnsweredCardsIcons([...answeredCardsIcons, quase])
+                setCardSwitched([])
+            } else {
+                setAnsweredCards([...answeredCards, cardSwitched[0]])
+                setZapCards([...zapCards, cardSwitched[0]])
+                setAnsweredCardsIcons([...answeredCardsIcons, certo])
+                setCardSwitched([])
+            }
+        }
+    }
+
     return (
         <Card cardClicked={cardClicked} wordColor={wordColor} answeredCards={answeredCards} question={question}>
             <p>{cardText()}</p>
             {cardIcon()}
+            {cardSwitch === true && cardSwitched.includes(question) ? <Botoes>
+            {ButtonsFooter.map((b,i) => 
+            <Botao onClick={()=>pressButton(i)} key={i} color={b.color}>{b.name}</Botao>)
+            }
+        </Botoes> : undefined}
         </Card>
     )
 };
@@ -85,4 +116,28 @@ const Card = styled.div`
         bottom: ${props => props.cardClicked === false || props.answeredCards.includes(props.question) ? "" : "10px"};
         right: ${props => props.cardClicked === false  || props.answeredCards.includes(props.question) ? "" : "10px"};
     }
+`
+
+const Botoes = styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 20px;
+`
+const Botao = styled.button`
+    width: 90px;
+    font-family: 'Recursive';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #FFFFFF;
+    background-color: ${props=> props.color};
+    border-radius: 5px;
+    border: 1px solid ${props=> props.color};
+    padding:5px;
 `

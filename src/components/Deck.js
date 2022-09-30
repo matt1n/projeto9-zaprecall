@@ -1,6 +1,6 @@
 import Cards from "./Cards"
 
-export default function Deck({play, virar, cardSwitched, setCardSwitched, questionsNumber, zapCards, almoustCards, forgotCards, answeredCards, certo, quase, erro}) {
+export default function Deck({play, virar, cardSwitched, setCardSwitched, questionsNumber, zapCards, setZapCards, almoustCards, setAlmoustCards, forgotCards, setForgotCards, answeredCards, setAnsweredCards, certo, quase, erro, answeredCardsIcons, setAnsweredCardsIcons}) {
     const questionAndAnswer = [
         {Q: "O que é JSX?", R: "Uma extensão de linguagem do JavaScript"},
         {Q: "O React é __", R: "uma biblioteca JavaScript para construção de interfaces"},
@@ -25,12 +25,18 @@ export default function Deck({play, virar, cardSwitched, setCardSwitched, questi
                 cardSwitched={cardSwitched} 
                 setCardSwitched={setCardSwitched}
                 zapCards={zapCards}
+                setZapCards={setZapCards}
                 almoustCards={almoustCards}
+                setAlmoustCards={setAlmoustCards}
                 forgotCards={forgotCards}
+                setForgotCards={setForgotCards}
                 answeredCards={answeredCards}
+                setAnsweredCards={setAnsweredCards}
                 certo={certo} 
                 quase={quase} 
                 erro={erro}
+                answeredCardsIcons={answeredCardsIcons}
+                setAnsweredCardsIcons={setAnsweredCardsIcons}
                 ></Cards>)
             }
         </>
