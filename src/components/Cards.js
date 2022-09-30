@@ -1,7 +1,7 @@
 import { useState } from "react"
 import styled from "styled-components"
 
-export default function Cards({question, questionAndAnswer, i, play, virar, cardSwitched, setCardSwitched, zapCards, setZapCards, almoustCards, setAlmoustCards, forgotCards, setForgotCards, answeredCards, setAnsweredCards, certo, quase, erro, answeredCardsIcons, setAnsweredCardsIcons}) {
+export default function Cards({question, choosedDeck, i, play, virar, cardSwitched, setCardSwitched, zapCards, setZapCards, almoustCards, setAlmoustCards, forgotCards, setForgotCards, answeredCards, setAnsweredCards, certo, quase, erro, answeredCardsIcons, setAnsweredCardsIcons}) {
     const [cardClicked, setCardClicked] = useState(false)
     const [cardSwitch, setCardSwitch] = useState(false)
     const ButtonsFooter = [
@@ -37,9 +37,9 @@ export default function Cards({question, questionAndAnswer, i, play, virar, card
         if (cardClicked === false || answeredCards.includes(question)){
             return question
         } else if (cardSwitch===false){
-            return questionAndAnswer[i].Q
+            return choosedDeck[i].Q
         } else {
-            return questionAndAnswer[i].R
+            return choosedDeck[i].R
         }
     }
 
