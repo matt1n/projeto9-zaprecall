@@ -1,9 +1,10 @@
 import { useState } from "react"
 import styled from "styled-components"
 
-export default function Home({logo, drivenDeck, rickRollDeck, setChoosedDeck}) {
+export default function Home({logo, drivenDeck, rickRollDeck, choosedDeck, setChoosedDeck, numInput, setNumInput}) {
     
     const [enter, setEnter] = useState(false)
+    const [nextHome, setNextHome] = useState(false)
 
     const [estado, setEstado] = useState("")
 
@@ -14,20 +15,40 @@ export default function Home({logo, drivenDeck, rickRollDeck, setChoosedDeck}) {
         } else if (estado==="2"){
             setChoosedDeck(rickRollDeck)
         }
+        setNextHome(true)
+    }
+
+    function drawDeck(){
+        setEnter(true)
+    }
+
+    function homeMenu(){
+        if (nextHome===false){
+            return(
+                <form onSubmit={editarEstado}>
+                    <select value={estado} onChange={texto=> setEstado(texto.target.value)}>
+                        <option value="">Selecione seu deck</option>
+                        <option value="1">Driven Deck</option>
+                        <option value="2">Rick Roll</option>
+                    </select>
+                    <button type="submit" disabled={estado==="" && true}>Iniciar Recall!</button>
+                </form>
+            )
+        } else {
+            return(
+                <>
+                    <input onChange={(e)=>setNumInput(e.target.value)} type="number" min={1} max={choosedDeck.length} value={1} placeholder={"Digite sua meta de zaps... (1-" + choosedDeck.length+")"}></input>
+                    <button onClick={drawDeck}>Iniciar Recall!</button>
+                </>
+            )
+        }
     }
 
     return(
     <HomeContainer estado={estado} enter={enter}>
         <img src={logo} alt="Logo"/>
         <p>ZapRecall</p>
-        <form onSubmit={editarEstado}>
-            <select value={estado} onChange={texto=> setEstado(texto.target.value)}>
-                <option value="">Selecione seu deck</option>
-                <option value="1">Driven Deck</option>
-                <option value="2">Rick Roll</option>
-            </select>
-            <button type="submit" onClick={()=>setEnter(true)} disabled={estado==="" ? true : ""}>Iniciar Recall!</button>
-        </form>    
+        {homeMenu()}    
     </HomeContainer>    
     )
 };
@@ -63,6 +84,20 @@ const HomeContainer = styled.div`
         border-radius: 5px;
         border: none;
         color: #333333;
+    }
+    input{
+        margin-top: 29.5px;
+        width: 246px;
+        height: 40px;
+        background-color: #FFFFFF;
+        border-radius: 5px;
+        border: none;
+        color: #333333;
+        text-align: center;
+        font-size: 15px;
+    }
+    input::placeholder{
+        font-size: 15px;
     }
     button{
         width: 246px;

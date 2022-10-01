@@ -36,6 +36,7 @@ export function Main({logo, play, virar, certo, quase, erro}) {
 
 const [choosedDeck, setChoosedDeck] = useState(drivenDeck)
 const questionsNumber = choosedDeck.map((u,i)=> `Palavra ${i+1}`)
+const [numInput, setNumInput] = useState(1)
   
   return (
     <ZapMain>
@@ -44,7 +45,10 @@ const questionsNumber = choosedDeck.map((u,i)=> `Palavra ${i+1}`)
       <Home logo={logo}
       drivenDeck={drivenDeck}
       rickRollDeck={rickRollDeck}
+      choosedDeck={choosedDeck}
       setChoosedDeck={setChoosedDeck}
+      numInput={numInput}
+      setNumInput={setNumInput}
       />
       
       <Header logo={logo}/>
@@ -69,6 +73,7 @@ const questionsNumber = choosedDeck.map((u,i)=> `Palavra ${i+1}`)
       answeredCardsIcons={answeredCardsIcons}
       setAnsweredCardsIcons={setAnsweredCardsIcons}
       choosedDeck={choosedDeck}
+      numInput={numInput}
       />
 
       <Footer  

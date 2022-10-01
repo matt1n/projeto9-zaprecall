@@ -1,9 +1,10 @@
 import { useState } from "react"
 import styled from "styled-components"
 
-export default function Cards({question, choosedDeck, i, play, virar, cardSwitched, setCardSwitched, zapCards, setZapCards, almoustCards, setAlmoustCards, forgotCards, setForgotCards, answeredCards, setAnsweredCards, certo, quase, erro, answeredCardsIcons, setAnsweredCardsIcons}) {
+export default function Cards({question, choosedDeck, i, play, virar, cardSwitched, setCardSwitched, zapCards, setZapCards, almoustCards, setAlmoustCards, forgotCards, setForgotCards, answeredCards, setAnsweredCards, certo, quase, erro, answeredCardsIcons, setAnsweredCardsIcons, numInput}) {
     const [cardClicked, setCardClicked] = useState(false)
     const [cardSwitch, setCardSwitch] = useState(false)
+
     const ButtonsFooter = [
         {name:"Não lembrei", color: "#FF3030"},
         {name:"Quase não lembrei", color: "#FF922E"},
@@ -60,20 +61,45 @@ export default function Cards({question, choosedDeck, i, play, virar, cardSwitch
     function pressButton(i){
         if (cardSwitched.length!==0){
             if (i===0){
-                setAnsweredCards([...answeredCards, cardSwitched[0]])
+                const newAnsweredCards = [...answeredCards, cardSwitched[0]]
+                setAnsweredCards(newAnsweredCards)
                 setForgotCards([...forgotCards, cardSwitched[0]])
                 setAnsweredCardsIcons([...answeredCardsIcons, erro])
                 setCardSwitched([])
+                if (choosedDeck.length===newAnsweredCards.length){
+                    if (zapCards.length>=numInput){
+                        alert("Parabéns!!!!!! 🥳")
+                    } else {
+                        alert("Putz... 😢")
+                    }
+                }
             } else if (i===1){
-                setAnsweredCards([...answeredCards, cardSwitched[0]])
+                const newAnsweredCards = [...answeredCards, cardSwitched[0]]
+                setAnsweredCards(newAnsweredCards)
                 setAlmoustCards([...almoustCards, cardSwitched[0]])
                 setAnsweredCardsIcons([...answeredCardsIcons, quase])
                 setCardSwitched([])
+                if (choosedDeck.length===newAnsweredCards.length){
+                    if (zapCards.length>=numInput){
+                        alert("Parabéns!!!!!! 🥳")
+                    } else {
+                        alert("Putz... 😢")
+                    }
+                }
             } else {
-                setAnsweredCards([...answeredCards, cardSwitched[0]])
-                setZapCards([...zapCards, cardSwitched[0]])
+                const newAnsweredCards = [...answeredCards, cardSwitched[0]]
+                const newZapCards = [...zapCards, cardSwitched[0]]
+                setAnsweredCards(newAnsweredCards)
+                setZapCards(newZapCards)
                 setAnsweredCardsIcons([...answeredCardsIcons, certo])
                 setCardSwitched([])
+                if (choosedDeck.length===newAnsweredCards.length){
+                    if (newZapCards.length>=numInput){
+                        alert("Parabéns!!!!!! 🥳")
+                    } else {
+                        alert("Putz... 😢")
+                    }
+                }
             }
         }
     }
