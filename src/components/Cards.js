@@ -1,7 +1,7 @@
 import { useState } from "react"
 import styled from "styled-components"
 
-export default function Cards({question, choosedDeck, i, play, virar, cardSwitched, setCardSwitched, zapCards, setZapCards, almoustCards, setAlmoustCards, forgotCards, setForgotCards, answeredCards, setAnsweredCards, certo, quase, erro, answeredCardsIcons, setAnsweredCardsIcons, numInput}) {
+export default function Cards({question, choosedDeck, i, play, virar, cardSwitched, setCardSwitched, zapCards, setZapCards, almoustCards, setAlmoustCards, forgotCards, setForgotCards, answeredCards, setAnsweredCards, zap, almoust, forgot, answeredCardsIcons, setAnsweredCardsIcons, numInput}) {
     const [cardClicked, setCardClicked] = useState(false)
     const [cardSwitch, setCardSwitch] = useState(false)
 
@@ -46,13 +46,13 @@ export default function Cards({question, choosedDeck, i, play, virar, cardSwitch
 
     function cardIcon(){
         if (cardSwitch===false) {
-            return <img onClick={switchCard} src={cardClicked === false ? play : virar} alt="Botão Play"/>
+            return <img data-identifier="flashcard-show-btn" onClick={switchCard} src={cardClicked === false ? play : virar} alt="Botão Play"/>
         } else if (zapCards.includes(question)){
-            return <img src={certo} alt="Botão Play"/>
+            return <img data-identifier="flashcard-status" src={zap} alt="Icone Zap"/>
         } else if (almoustCards.includes(question)) {
-            return <img src={quase} alt="Botão Play"/>
+            return <img data-identifier="flashcard-status" src={almoust} alt="Icone Quase"/>
         } else if (forgotCards.includes(question)){
-            return <img src={erro} alt="Botão Play"/>
+            return <img data-identifier="flashcard-status" src={forgot} alt="Icone Não Lembrei"/>
         } else {
             return undefined
         }
@@ -64,7 +64,7 @@ export default function Cards({question, choosedDeck, i, play, virar, cardSwitch
                 const newAnsweredCards = [...answeredCards, cardSwitched[0]]
                 setAnsweredCards(newAnsweredCards)
                 setForgotCards([...forgotCards, cardSwitched[0]])
-                setAnsweredCardsIcons([...answeredCardsIcons, erro])
+                setAnsweredCardsIcons([...answeredCardsIcons, forgot])
                 setCardSwitched([])
                 if (choosedDeck.length===newAnsweredCards.length){
                     if (zapCards.length>=numInput){
@@ -77,7 +77,7 @@ export default function Cards({question, choosedDeck, i, play, virar, cardSwitch
                 const newAnsweredCards = [...answeredCards, cardSwitched[0]]
                 setAnsweredCards(newAnsweredCards)
                 setAlmoustCards([...almoustCards, cardSwitched[0]])
-                setAnsweredCardsIcons([...answeredCardsIcons, quase])
+                setAnsweredCardsIcons([...answeredCardsIcons, almoust])
                 setCardSwitched([])
                 if (choosedDeck.length===newAnsweredCards.length){
                     if (zapCards.length>=numInput){
@@ -91,7 +91,7 @@ export default function Cards({question, choosedDeck, i, play, virar, cardSwitch
                 const newZapCards = [...zapCards, cardSwitched[0]]
                 setAnsweredCards(newAnsweredCards)
                 setZapCards(newZapCards)
-                setAnsweredCardsIcons([...answeredCardsIcons, certo])
+                setAnsweredCardsIcons([...answeredCardsIcons, zap])
                 setCardSwitched([])
                 if (choosedDeck.length===newAnsweredCards.length){
                     if (newZapCards.length>=numInput){
@@ -105,8 +105,8 @@ export default function Cards({question, choosedDeck, i, play, virar, cardSwitch
     }
 
     return (
-        <Card cardClicked={cardClicked} wordColor={wordColor} answeredCards={answeredCards} question={question}>
-            <p>{cardText()}</p>
+        <Card data-identifier="flashcard" cardClicked={cardClicked} wordColor={wordColor} answeredCards={answeredCards} question={question}>
+            <p data-identifier="flashcard-index-item">{cardText()}</p>
             {cardIcon()}
             {cardSwitch === true && cardSwitched.includes(question) ? <Botoes>
             {ButtonsFooter.map((b,i) => 

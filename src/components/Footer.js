@@ -4,7 +4,7 @@ export default function Footer({questionsNumber, answeredCards, answeredCardsIco
 
     return(
     <FooterStyled>
-        <p>Concluídas: {answeredCards.length}/{questionsNumber.length}</p>
+        <p data-identifier="flashcard-counter">Concluídas: {answeredCards.length}/{questionsNumber.length}</p>
         {answeredCardsIcons.length!==0 ?<AnswerList>
             {answeredCardsIcons.map((u,i)=> <img key={i} src={u} alt="icon"/>)}
         </AnswerList> : undefined}

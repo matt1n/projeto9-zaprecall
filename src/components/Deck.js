@@ -1,6 +1,6 @@
 import Cards from "./Cards"
 
-export default function Deck({play, virar, cardSwitched, setCardSwitched, questionsNumber, zapCards, setZapCards, almoustCards, setAlmoustCards, forgotCards, setForgotCards, answeredCards, setAnsweredCards, certo, quase, erro, answeredCardsIcons, setAnsweredCardsIcons, choosedDeck, numInput}) {
+export default function Deck({play, virar, cardSwitched, setCardSwitched, questionsNumber, zapCards, setZapCards, almoustCards, setAlmoustCards, forgotCards, setForgotCards, answeredCards, setAnsweredCards, zap, almoust, forgot, answeredCardsIcons, setAnsweredCardsIcons, choosedDeck, numInput}) {
 
     return(
         <>
@@ -22,9 +22,9 @@ export default function Deck({play, virar, cardSwitched, setCardSwitched, questi
                 setForgotCards={setForgotCards}
                 answeredCards={answeredCards}
                 setAnsweredCards={setAnsweredCards}
-                certo={certo} 
-                quase={quase} 
-                erro={erro}
+                zap={zap} 
+                almoust={almoust} 
+                forgot={forgot}
                 answeredCardsIcons={answeredCardsIcons}
                 setAnsweredCardsIcons={setAnsweredCardsIcons}
                 numInput={numInput}

@@ -7,7 +7,7 @@ import { useState } from "react";
 import Home from "./Home";
 
 
-export function Main({logo, play, virar, certo, quase, erro}) {
+export function Main({logo, play, virar, zap, almoust, forgot}) {
   const [cardSwitched, setCardSwitched] = useState([])
 
   const [answeredCards, setAnsweredCards] = useState([])
@@ -15,36 +15,16 @@ export function Main({logo, play, virar, certo, quase, erro}) {
   const [almoustCards, setAlmoustCards] = useState([])
   const [forgotCards, setForgotCards] = useState([])
   const [answeredCardsIcons, setAnsweredCardsIcons] = useState([])
-  const drivenDeck = [
-    {Q: "O que é JSX?", R: "Uma extensão de linguagem do JavaScript"},
-    {Q: "O React é __", R: "uma biblioteca JavaScript para construção de interfaces"},
-    {Q: "Componentes devem iniciar com __", R: "letra maiúscula"},
-    {Q: "Podemos colocar __ dentro do JSX", R: "expressões"},
-    {Q: "O ReactDOM nos ajuda __", R: "interagindo com a DOM para colocar componentes React na mesma"},
-    {Q: "Usamos o npm para __", R: "gerenciar os pacotes necessários e suas dependências"},
-    {Q: "Usamos props para __", R: "passar diferentes informações para componentes"},
-    {Q: "Usamos estado (state) para __", R: "dizer para o React quais informações quando atualizadas devem renderizar a tela novamente"}
-]
-  const rickRollDeck = [
-    {Q: "Never gonna", R: "give you up"},
-    {Q: "Never gonna", R: "let you down"},
-    {Q: "Never gonna", R: "run around and desert you"},
-    {Q: "Never gonna", R: "make you cry"},
-    {Q: "Never gonna", R: "say goodbye"},
-    {Q: "Never gonna", R: "tell a lie and hurt you"},
-]
 
-const [choosedDeck, setChoosedDeck] = useState(drivenDeck)
+const [choosedDeck, setChoosedDeck] = useState([])
 const questionsNumber = choosedDeck.map((u,i)=> `Palavra ${i+1}`)
-const [numInput, setNumInput] = useState(1)
+const [numInput, setNumInput] = useState('')
   
   return (
     <ZapMain>
       <GlobalStyle/>
       
       <Home logo={logo}
-      drivenDeck={drivenDeck}
-      rickRollDeck={rickRollDeck}
       choosedDeck={choosedDeck}
       setChoosedDeck={setChoosedDeck}
       numInput={numInput}
@@ -67,9 +47,9 @@ const [numInput, setNumInput] = useState(1)
       setForgotCards={setForgotCards}
       answeredCards={answeredCards}
       setAnsweredCards={setAnsweredCards}
-      certo={certo} 
-      quase={quase} 
-      erro={erro}
+      zap={zap} 
+      almoust={almoust} 
+      forgot={forgot}
       answeredCardsIcons={answeredCardsIcons}
       setAnsweredCardsIcons={setAnsweredCardsIcons}
       choosedDeck={choosedDeck}
