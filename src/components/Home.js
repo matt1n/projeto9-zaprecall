@@ -56,7 +56,7 @@ export default function Home({logo, choosedDeck, setChoosedDeck, numInput, setNu
             return(
                 <>
                     <input data-identifier="goals-input" onChange={(e)=>setNumInput(e.target.value)} type="number" min={1} max={choosedDeck.length} value={numInput} placeholder={"Digite sua meta de zaps... (1-" + choosedDeck.length+")"}></input>
-                    <ZapGoalButton data-identifier="start-btn" onClick={drawDeck} disabled={numInput==="" && true} numInput={numInput} >Iniciar Recall!</ZapGoalButton>
+                    <ZapGoalButton data-identifier="start-btn" onClick={drawDeck} disabled={(numInput==="" || numInput>6) && true} numInput={numInput} >Iniciar Recall!</ZapGoalButton>
                 </>
             )
         }
@@ -138,12 +138,12 @@ const ZapGoalButton = styled.button`
     width: 246px;
     height: 54px;
     border-radius: 5px;
-    border: ${props=> props.numInput==="" ? "none" : "1px solid #D70900"};
-    background-color: ${props=> props.numInput==="" ? "#e0e0e0" : "#FFFFFF"};
+    border: ${props=> (props.numInput==="" || props.numInput>6) ? "none" : "1px solid #D70900"};
+    background-color: ${props=> (props.numInput==="" || props.numInput>6) ? "#e0e0e0" : "#FFFFFF"};
     margin-top: 18px;
     box-shadow: 0px 4px 4px #00000015;
     font-family: 'Recursive';
-    color: ${props=> props.numInput==="" ? "#33333375" : "#D70900"};
+    color: ${props=> (props.numInput==="" || props.numInput>6) ? "#33333375" : "#D70900"};
     font-size: 18px;
     font-weight: 400; 
 `
