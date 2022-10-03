@@ -20,13 +20,14 @@ export default function Cards({question, choosedDeck, i, cardSwitched, setCardSw
     ]
 
     function switchCard(){
-    if  (cardSwitched.length===0 || cardSwitched.includes(question))
-        if(cardClicked === false){
-            setCardClicked(true)
-        } else {
-            setCardSwitch(true)
-            setCardSwitched([question])
-        }
+        if  (cardSwitched.length===0 || cardSwitched.includes(question)){
+            if(cardClicked === false){
+                setCardClicked(true)
+            } else {
+                setCardSwitch(true)
+                setCardSwitched([question])
+            }
+        }     
     }
 
     function wordColor(){
