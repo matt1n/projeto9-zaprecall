@@ -113,7 +113,7 @@ export default function Cards({question, choosedDeck, i, cardSwitched, setCardSw
     }
 
     return (
-        <Card data-identifier="flashcard" cardClicked={cardClicked} wordColor={wordColor} answeredCards={answeredCards} question={question}>
+        <Card data-identifier="flashcard" cardClicked={cardClicked} cardSwitch={cardSwitch} wordColor={wordColor} answeredCards={answeredCards} question={question}>
             <p data-identifier="flashcard-index-item">{cardText()}</p>
             {cardIcon()}
             {cardSwitch === true && cardSwitched.includes(question) ? <Botoes>
@@ -145,6 +145,9 @@ const Card = styled.div`
     line-height: ${props => props.cardClicked === false|| props.answeredCards.includes(props.question) ? "19px" : "22px"}; //muda
     color: ${props=> props.wordColor};
     position: relative;
+    transition: .3s;
+    transform-style:preserve-3d;
+    transform: ${props=> props.cardSwitch===true ? "rotateY(-360deg)" : ""};
     img{
         position: ${props => props.cardClicked === false || props.answeredCards.includes(props.question) ? "" : "absolute"} ;
         bottom: ${props => props.cardClicked === false || props.answeredCards.includes(props.question) ? "" : "10px"};
