@@ -5,6 +5,8 @@ import Footer from "./Footer";
 import Header from "./Header";
 import { useState } from "react";
 import Home from "./Home";
+import Win from "./Win";
+import Lose from "./Lose";
 
 
 export function Main({logo, play, virar, zap, almoust, forgot}) {
@@ -16,6 +18,8 @@ export function Main({logo, play, virar, zap, almoust, forgot}) {
 const [choosedDeck, setChoosedDeck] = useState([])
 const questionsNumber = choosedDeck.map((u,i)=> `Palavra ${i+1}`)
 const [numInput, setNumInput] = useState('')
+const [winScreen, setWinScreen] = useState(false)
+const [loseScreen, setLoseScreen] = useState(false)
   
   return (
     <ZapMain>
@@ -45,7 +49,12 @@ const [numInput, setNumInput] = useState('')
       setAnsweredCardsIcons={setAnsweredCardsIcons}
       choosedDeck={choosedDeck}
       numInput={numInput}
+      setWinScreen={setWinScreen}
+      setLoseScreen={setLoseScreen}
       />
+
+      <Win winScreen={winScreen}/>
+      <Lose loseScreen={loseScreen}/>
 
       <Footer  
       questionsNumber={questionsNumber}

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import styled from "styled-components"
 
-export default function Cards({question, choosedDeck, i, play, virar, cardSwitched, setCardSwitched, zapCards, setZapCards, answeredCards, setAnsweredCards, zap, almoust, forgot, answeredCardsIcons, setAnsweredCardsIcons, numInput}) {
+export default function Cards({question, choosedDeck, i, play, virar, cardSwitched, setCardSwitched, zapCards, setZapCards, answeredCards, setAnsweredCards, zap, almoust, forgot, answeredCardsIcons, setAnsweredCardsIcons, numInput, setWinScreen, setLoseScreen}) {
     const [cardClicked, setCardClicked] = useState(false)
     const [cardSwitch, setCardSwitch] = useState(false)
 
@@ -71,9 +71,9 @@ export default function Cards({question, choosedDeck, i, play, virar, cardSwitch
                 setCardSwitched([])
                 if (choosedDeck.length===newAnsweredCards.length){
                     if (zapCards.length>=numInput){
-                        alert("Parabéns!!!!!! 🥳")
+                        setWinScreen(true)
                     } else {
-                        alert("Putz... 😢")
+                        setLoseScreen(true)
                     }
                 }
             } else if (i===1){
@@ -84,9 +84,9 @@ export default function Cards({question, choosedDeck, i, play, virar, cardSwitch
                 setCardSwitched([])
                 if (choosedDeck.length===newAnsweredCards.length){
                     if (zapCards.length>=numInput){
-                        alert("Parabéns!!!!!! 🥳")
+                        setWinScreen(true)
                     } else {
-                        alert("Putz... 😢")
+                        setLoseScreen(true)
                     }
                 }
             } else {
@@ -98,9 +98,9 @@ export default function Cards({question, choosedDeck, i, play, virar, cardSwitch
                 setCardSwitched([])
                 if (choosedDeck.length===newAnsweredCards.length){
                     if (newZapCards.length>=numInput){
-                        alert("Parabéns!!!!!! 🥳")
+                        setWinScreen(true)
                     } else {
-                        alert("Putz... 😢")
+                        setLoseScreen(true)
                     }
                 }
             }
