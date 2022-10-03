@@ -9,7 +9,7 @@ import Win from "./Win";
 import Lose from "./Lose";
 
 
-export function Main({logo, play, virar, zap, almoust, forgot}) {
+export function Main() {
   const [cardSwitched, setCardSwitched] = useState([])
 
   const [answeredCards, setAnsweredCards] = useState([])
@@ -25,26 +25,21 @@ const [loseScreen, setLoseScreen] = useState(false)
     <ZapMain>
       <GlobalStyle/>
       
-      <Home logo={logo}
+      <Home
       choosedDeck={choosedDeck}
       setChoosedDeck={setChoosedDeck}
       numInput={numInput}
       setNumInput={setNumInput}
       />
       
-      <Header logo={logo}/>
+      <Header/>
       
       <Deck 
-      play={play} 
-      virar={virar} 
       cardSwitched={cardSwitched} 
       setCardSwitched={setCardSwitched} 
       questionsNumber={questionsNumber}
       answeredCards={answeredCards}
       setAnsweredCards={setAnsweredCards}
-      zap={zap} 
-      almoust={almoust} 
-      forgot={forgot}
       answeredCardsIcons={answeredCardsIcons}
       setAnsweredCardsIcons={setAnsweredCardsIcons}
       choosedDeck={choosedDeck}

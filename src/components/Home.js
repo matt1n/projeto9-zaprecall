@@ -1,7 +1,8 @@
 import { useState } from "react"
 import styled from "styled-components"
+import logo from "../assets/img/logo.png"
 
-export default function Home({logo, choosedDeck, setChoosedDeck, numInput, setNumInput}) {
+export default function Home({choosedDeck, setChoosedDeck, numInput, setNumInput}) {
     const [enter, setEnter] = useState(false)
     const [nextHome, setNextHome] = useState(false)
 

@@ -1,7 +1,7 @@
 import Cards from "./Cards"
 import { useState } from "react"
 
-export default function Deck({play, virar, cardSwitched, setCardSwitched, questionsNumber, answeredCards, setAnsweredCards, zap, almoust, forgot, answeredCardsIcons, setAnsweredCardsIcons, choosedDeck, numInput,setWinScreen,setLoseScreen}) {
+export default function Deck({cardSwitched, setCardSwitched, questionsNumber, answeredCards, setAnsweredCards, answeredCardsIcons, setAnsweredCardsIcons, choosedDeck, numInput,setWinScreen,setLoseScreen}) {
     const [zapCards, setZapCards] = useState([])
     return(
         <>
@@ -11,17 +11,12 @@ export default function Deck({play, virar, cardSwitched, setCardSwitched, questi
                 question={question} 
                 choosedDeck={choosedDeck} 
                 i={i} 
-                play={play} 
-                virar={virar} 
                 cardSwitched={cardSwitched} 
                 setCardSwitched={setCardSwitched}
                 zapCards={zapCards}
                 setZapCards={setZapCards}
                 answeredCards={answeredCards}
                 setAnsweredCards={setAnsweredCards}
-                zap={zap} 
-                almoust={almoust} 
-                forgot={forgot}
                 answeredCardsIcons={answeredCardsIcons}
                 setAnsweredCardsIcons={setAnsweredCardsIcons}
                 numInput={numInput}

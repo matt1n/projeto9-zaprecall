@@ -1,7 +1,12 @@
 import { useState } from "react"
 import styled from "styled-components"
+import play from "../assets/img/seta_play.png"
+import switchIcon from "../assets/img/seta_virar.png"
+import zap from "../assets/img/icone_certo.png"
+import almoust from "../assets/img/icone_quase.png"
+import forgot from "../assets/img/icone_erro.png"
 
-export default function Cards({question, choosedDeck, i, play, virar, cardSwitched, setCardSwitched, zapCards, setZapCards, answeredCards, setAnsweredCards, zap, almoust, forgot, answeredCardsIcons, setAnsweredCardsIcons, numInput, setWinScreen, setLoseScreen}) {
+export default function Cards({question, choosedDeck, i, cardSwitched, setCardSwitched, zapCards, setZapCards, answeredCards, setAnsweredCards, answeredCardsIcons, setAnsweredCardsIcons, numInput, setWinScreen, setLoseScreen}) {
     const [cardClicked, setCardClicked] = useState(false)
     const [cardSwitch, setCardSwitch] = useState(false)
 
@@ -49,7 +54,7 @@ export default function Cards({question, choosedDeck, i, play, virar, cardSwitch
 
     function cardIcon(){
         if (cardSwitch===false) {
-            return <img data-identifier="flashcard-show-btn" onClick={switchCard} src={cardClicked === false ? play : virar} alt="Botão Play"/>
+            return <img data-identifier="flashcard-show-btn" onClick={switchCard} src={cardClicked === false ? play : switchIcon} alt="Botão Play"/>
         } else if (zapCards.includes(question)){
             return <img data-identifier="flashcard-status" src={zap} alt="Icone Zap"/>
         } else if (almoustCards.includes(question)) {
