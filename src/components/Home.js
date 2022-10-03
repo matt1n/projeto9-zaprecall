@@ -5,7 +5,7 @@ export default function Home({logo, choosedDeck, setChoosedDeck, numInput, setNu
     const [enter, setEnter] = useState(false)
     const [nextHome, setNextHome] = useState(false)
 
-    const [estado, setEstado] = useState("")
+    const [state, setState] = useState("")
 
     const drivenDeck = [
         {Q: "O que é JSX?", R: "Uma extensão de linguagem do JavaScript"},
@@ -15,7 +15,7 @@ export default function Home({logo, choosedDeck, setChoosedDeck, numInput, setNu
         {Q: "O ReactDOM nos ajuda __", R: "interagindo com a DOM para colocar componentes React na mesma"},
         {Q: "Usamos o npm para __", R: "gerenciar os pacotes necessários e suas dependências"},
         {Q: "Usamos props para __", R: "passar diferentes informações para componentes"},
-        {Q: "Usamos estado (state) para __", R: "dizer para o React quais informações quando atualizadas devem renderizar a tela novamente"}
+        {Q: "Usamos state (state) para __", R: "dizer para o React quais informações quando atualizadas devem renderizar a tela novamente"}
     ]
       const rickRollDeck = [
         {Q: "Never gonna_", R: "...give you up"},
@@ -28,9 +28,9 @@ export default function Home({logo, choosedDeck, setChoosedDeck, numInput, setNu
 
     function editarEstado(e){
         e.preventDefault()
-        if (estado==="1"){
+        if (state==="1"){
             setChoosedDeck(drivenDeck)
-        } else if (estado==="2"){
+        } else if (state==="2"){
             setChoosedDeck(rickRollDeck)
         }
         setNextHome(true)
@@ -44,26 +44,40 @@ export default function Home({logo, choosedDeck, setChoosedDeck, numInput, setNu
         if (nextHome===false){
             return(
                 <form onSubmit={editarEstado}>
-                    <select data-identifier="deck-selector" value={estado} onChange={texto=> setEstado(texto.target.value)}>
-                        <option data-identifier="deck-option" value="">Selecione seu deck</option>
+                    <select data-identifier="deck-selector" value={state} onChange={texto=> setState(texto.target.value)}>
+                        <option data-identifier="deck-option" value="" hidden>Selecione seu deck</option>
                         <option data-identifier="deck-option" value="1">Driven Deck</option>
                         <option data-identifier="deck-option" value="2">Rick Roll</option>
                     </select>
-                    <DeckConfirmButton estado={estado} type="submit" disabled={estado==="" && true}>Iniciar Recall!</DeckConfirmButton>
+                    <DeckConfirmButton state={state} type="submit" disabled={state==="" && true}>Iniciar Recall!</DeckConfirmButton>
                 </form>
             )
         } else {
             return(
                 <>
-                    <input data-identifier="goals-input" onChange={(e)=>setNumInput(e.target.value)} type="number" min={1} max={choosedDeck.length} value={numInput} placeholder={"Digite sua meta de zaps... (1-" + choosedDeck.length+")"}></input>
-                    <ZapGoalButton data-identifier="start-btn" onClick={drawDeck} disabled={(numInput==="" || numInput>6) && true} numInput={numInput} >Iniciar Recall!</ZapGoalButton>
+                    <input 
+                    data-identifier="goals-input" 
+                    onChange={(e)=>setNumInput(e.target.value)} 
+                    type="number" min={1} max={choosedDeck.length} 
+                    value={numInput} 
+                    placeholder={"Digite sua meta de zaps... (1-" + choosedDeck.length+")"}>
+                    </input>
+                    
+                    <ZapGoalButton 
+                    data-identifier="start-btn" 
+                    onClick={drawDeck} 
+                    disabled={(numInput==="" || numInput>choosedDeck.length || numInput<1) && true} 
+                    numInput={numInput} 
+                    choosedDeck={choosedDeck}>
+                        Iniciar Recall!
+                    </ZapGoalButton>
                 </>
             )
         }
     }
 
     return(
-    <HomeContainer estado={estado} enter={enter} numInput={numInput}>
+    <HomeContainer state={state} enter={enter} numInput={numInput}>
         <img src={logo} alt="Logo"/>
         <p>ZapRecall</p>
         {homeMenu()}    
@@ -87,7 +101,7 @@ const HomeContainer = styled.div`
     p{
         margin-top: 21.5px;
         font-size: 36px;
-        font-weight: 700;
+        font-weight: 400;
         font-family: 'Righteous';
         color: #FFFFFF;
     }
@@ -101,7 +115,7 @@ const HomeContainer = styled.div`
         background-color: #FFFFFF;
         border-radius: 5px;
         border: none;
-        color: #333333;
+        color: ${props=> props.state==="" ? "#333333 ": "#000000"};
     }
     input{
         margin-top: 29.5px;
@@ -124,12 +138,12 @@ const DeckConfirmButton = styled.button`
     width: 246px;
     height: 54px;
     border-radius: 5px;
-    border: ${props=> props.estado==="" ? "none" : "1px solid #D70900"};
-    background-color: ${props=> props.estado==="" ? "#e0e0e0" : "#FFFFFF"};
+    border: ${props=> props.state==="" ? "none" : "1px solid #D70900"};
+    background-color: ${props=> props.state==="" ? "#e0e0e0" : "#FFFFFF"};
     margin-top: 18px;
     box-shadow: 0px 4px 4px #00000015;
     font-family: 'Recursive';
-    color: ${props=> props.estado==="" ? "#33333375" : "#D70900"};
+    color: ${props=> props.state==="" ? "#33333375" : "#D70900"};
     font-size: 18px;
     font-weight: 400;
 `
@@ -138,12 +152,12 @@ const ZapGoalButton = styled.button`
     width: 246px;
     height: 54px;
     border-radius: 5px;
-    border: ${props=> (props.numInput==="" || props.numInput>6) ? "none" : "1px solid #D70900"};
-    background-color: ${props=> (props.numInput==="" || props.numInput>6) ? "#e0e0e0" : "#FFFFFF"};
+    border: ${props=> (props.numInput==="" || props.numInput>props.choosedDeck.length || props.numInput<1) ? "none" : "1px solid #D70900"};
+    background-color: ${props=> (props.numInput==="" || props.numInput>props.choosedDeck.length || props.numInput<1) ? "#e0e0e0" : "#FFFFFF"};
     margin-top: 18px;
     box-shadow: 0px 4px 4px #00000015;
     font-family: 'Recursive';
-    color: ${props=> (props.numInput==="" || props.numInput>6) ? "#33333375" : "#D70900"};
+    color: ${props=> (props.numInput==="" || props.numInput>props.choosedDeck.length || props.numInput<1) ? "#33333375" : "#D70900"};
     font-size: 18px;
     font-weight: 400; 
 `

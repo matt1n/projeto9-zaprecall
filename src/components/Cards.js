@@ -1,9 +1,12 @@
 import { useState } from "react"
 import styled from "styled-components"
 
-export default function Cards({question, choosedDeck, i, play, virar, cardSwitched, setCardSwitched, zapCards, setZapCards, almoustCards, setAlmoustCards, forgotCards, setForgotCards, answeredCards, setAnsweredCards, zap, almoust, forgot, answeredCardsIcons, setAnsweredCardsIcons, numInput}) {
+export default function Cards({question, choosedDeck, i, play, virar, cardSwitched, setCardSwitched, zapCards, setZapCards, answeredCards, setAnsweredCards, zap, almoust, forgot, answeredCardsIcons, setAnsweredCardsIcons, numInput}) {
     const [cardClicked, setCardClicked] = useState(false)
     const [cardSwitch, setCardSwitch] = useState(false)
+
+    const [almoustCards, setAlmoustCards] = useState([])
+    const [forgotCards, setForgotCards] = useState([])
 
     const ButtonsFooter = [
         {name:"Não lembrei", color: "#FF3030"},

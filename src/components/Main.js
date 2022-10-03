@@ -11,9 +11,6 @@ export function Main({logo, play, virar, zap, almoust, forgot}) {
   const [cardSwitched, setCardSwitched] = useState([])
 
   const [answeredCards, setAnsweredCards] = useState([])
-  const [zapCards, setZapCards] = useState([])
-  const [almoustCards, setAlmoustCards] = useState([])
-  const [forgotCards, setForgotCards] = useState([])
   const [answeredCardsIcons, setAnsweredCardsIcons] = useState([])
 
 const [choosedDeck, setChoosedDeck] = useState([])
@@ -39,12 +36,6 @@ const [numInput, setNumInput] = useState('')
       cardSwitched={cardSwitched} 
       setCardSwitched={setCardSwitched} 
       questionsNumber={questionsNumber}
-      zapCards={zapCards}
-      setZapCards={setZapCards}
-      almoustCards={almoustCards}
-      setAlmoustCards={setAlmoustCards}
-      forgotCards={forgotCards}
-      setForgotCards={setForgotCards}
       answeredCards={answeredCards}
       setAnsweredCards={setAnsweredCards}
       zap={zap} 
